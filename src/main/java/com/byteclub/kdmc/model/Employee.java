@@ -4,7 +4,7 @@ import jakarta.persistence.Entity;
 import lombok.Getter;
 import lombok.Setter;
 
-@Entity
+@Entity(name = "employee")
 @Setter
 @Getter
 public class Employee extends BaseModel{
