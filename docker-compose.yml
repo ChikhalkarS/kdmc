@@ -1,0 +1,10 @@
+services:
+  db:
+    image: postgres:alpine3.19
+    restart: always
+    container_name: "KdmcService"
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: appuser
+      POSTGRES_PASSWORD: appuser
