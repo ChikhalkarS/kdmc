@@ -1,5 +1,6 @@
 package com.byteclub.kdmc.model;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.UniqueConstraint;
@@ -42,7 +43,7 @@ public class Student extends BaseModel{
     private String extracurricularActivities;
     private String transportationMethod;
     private String busRoute;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Address address;
 
 }

@@ -6,11 +6,11 @@ import com.byteclub.kdmc.model.Student;
 import com.byteclub.kdmc.repository.StudentRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-import static com.byteclub.kdmc.mapper.StudentMapper.mapStudentDtoToStudent;
-import static com.byteclub.kdmc.mapper.StudentMapper.mapStudentToResponse;
+import static com.byteclub.kdmc.mapper.StudentMapper.*;
 
 @Service
 public class StudentService {
@@ -20,15 +20,22 @@ public class StudentService {
         this.studentRepository = studentRepository;
     }
 
-    public Optional<Student> findStudentById(UUID id){
+    public Optional<Student> findStudentById(UUID id) {
         return studentRepository.findById(id);
     }
 
     public StudentResponseDTO save(StudentRequestDTO studentRequestDTO) {
 
+        Student student = studentRepository.save(mapStudentDtoToStudent(studentRequestDTO));
+        return mapStudentToResponse(student);
 
-       Student student= studentRepository.save(mapStudentDtoToStudent(studentRequestDTO));
-       return mapStudentToResponse(student);
+    }
+
+    public List<StudentResponseDTO> findAllStudent() {
+
+        List<Student> studentList = studentRepository.findAll();
+        return mapStudentListToStudentResponseList(studentList);
+
 
     }
 }

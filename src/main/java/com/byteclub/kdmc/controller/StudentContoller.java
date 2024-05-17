@@ -9,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 
@@ -24,7 +26,8 @@ public class StudentContoller {
     @GetMapping("/student/{Id}")
     public ResponseEntity<Student> getStudentById(@RequestParam String Id) {
         UUID uuid = UUID.fromString(Id);
-        return new ResponseEntity<>(studentService.findStudentById(uuid).get(), HttpStatus.OK);
+        Optional<Student> student = studentService.findStudentById(uuid);
+        return new ResponseEntity<>(student.get(), HttpStatus.OK);
 
     }
 
@@ -32,5 +35,11 @@ public class StudentContoller {
     public ResponseEntity<StudentResponseDTO> saveStudent(@RequestBody StudentRequestDTO studentRequestDTO) {
         StudentResponseDTO student = studentService.save(studentRequestDTO);
         return ResponseEntity.ok(student);
+    }
+
+    @GetMapping("/students")
+    public ResponseEntity<List<StudentResponseDTO>> getAllStudents()
+    {
+        return ResponseEntity.ok(studentService.findAllStudent());
     }
 }

@@ -1,5 +1,6 @@
 package com.byteclub.kdmc.dto;
 
+import com.byteclub.kdmc.model.Address;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,5 +17,6 @@ public class StudentRequestDTO {
     private String phoneNumber;
     private String dateOfBirth;
     private String gender;
+    private Address address;
 
 }
