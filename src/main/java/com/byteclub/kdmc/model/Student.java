@@ -2,12 +2,16 @@ package com.byteclub.kdmc.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToOne;
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.persistence.UniqueConstraint;
+import lombok.*;
+import org.springframework.context.annotation.Primary;
 
 @Entity(name = "student")
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Primary
 public class Student extends BaseModel{
     private String firstName;
     private String lastName;
