@@ -1,6 +1,7 @@
 package com.byteclub.kdmc.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.OneToOne;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,10 +12,6 @@ public class Employee extends BaseModel{
     private String firstName;
     private String lastName;
     private String email;
-    private String address;
-    private String city;
-    private String state;
-    private String zipCode;
     private String phoneNumber;
     private String dateOfBirth;
     private String gender;
@@ -31,4 +28,7 @@ public class Employee extends BaseModel{
     private String contractStartDate;
     private String contractEndDate;
     private String typeOfEmployment;
+
+    @OneToOne
+    private Address address;
 }

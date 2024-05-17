@@ -1,20 +1,21 @@
 package com.byteclub.kdmc.model;
 
 import jakarta.persistence.Entity;
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.UniqueConstraint;
+import lombok.*;
+import org.springframework.context.annotation.Primary;
 
 @Entity(name = "student")
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Primary
 public class Student extends BaseModel{
     private String firstName;
     private String lastName;
     private String email;
-    private String address;
-    private String city;
-    private String state;
-    private String zipCode;
     private String phoneNumber;
     private String dateOfBirth;
     private String gender;
@@ -41,7 +42,7 @@ public class Student extends BaseModel{
     private String extracurricularActivities;
     private String transportationMethod;
     private String busRoute;
-
-    private Class Class;
+    @OneToOne
+    private Address address;
 
 }
