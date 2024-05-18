@@ -2,6 +2,7 @@ package com.byteclub.kdmc.controller;
 
 import com.byteclub.kdmc.dto.StudentRequestDTO;
 import com.byteclub.kdmc.dto.StudentResponseDTO;
+import com.byteclub.kdmc.exception.ResourceNotFoundException;
 import com.byteclub.kdmc.model.Student;
 import com.byteclub.kdmc.service.StudentService;
 import org.springframework.http.HttpStatus;
@@ -17,17 +18,23 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/v1")
 public class StudentContoller {
-    private StudentService studentService;
+    private final StudentService studentService;
 
     public StudentContoller(StudentService studentService) {
         this.studentService = studentService;
     }
 
     @GetMapping("/student/{Id}")
-    public ResponseEntity<Student> getStudentById(@RequestParam String Id) {
+    public ResponseEntity<Student> getStudentById(@PathVariable String Id) {
         UUID uuid = UUID.fromString(Id);
         Optional<Student> student = studentService.findStudentById(uuid);
-        return new ResponseEntity<>(student.get(), HttpStatus.OK);
+       if(student.isPresent())
+       {
+           return new ResponseEntity<>(student.get(),HttpStatus.OK);
+       }
+       else {
+           throw new ResourceNotFoundException("Student with Id "+uuid+" is not present in system");
+       }
 
     }
 
