@@ -1,6 +1,7 @@
 package com.byteclub.kdmc.model;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
@@ -18,6 +19,7 @@ import org.springframework.context.annotation.Primary;
 public class Student extends BaseModel{
     private String firstName;
     private String lastName;
+    @Column(unique = true,nullable = false)
     private String email;
     private String phoneNumber;
     private String dateOfBirth;

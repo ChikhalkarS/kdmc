@@ -33,6 +33,7 @@ public class StudentMapper {
         return student;
     }
 
+
     public  StudentResponseDTO mapStudentToResponse(Student student) {
         StudentResponseDTO studentResponseDTO = new StudentResponseDTO();
         studentResponseDTO.setEmail(student.getEmail());
