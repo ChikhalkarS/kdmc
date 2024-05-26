@@ -4,6 +4,7 @@ import com.byteclub.kdmc.dto.LoginDTO;
 import com.byteclub.kdmc.dto.SignUpDTO;
 import com.byteclub.kdmc.dto.StudentResponseDTO;
 import com.byteclub.kdmc.exception.InvalidCredentials;
+import com.byteclub.kdmc.exception.InvalidUserSessionException;
 import com.byteclub.kdmc.exception.ResourceNotFoundException;
 import com.byteclub.kdmc.exception.UserExistsInSystem;
 import com.byteclub.kdmc.mapper.StudentMapper;
@@ -80,4 +81,14 @@ public class AuthService {
         return token;
     }
 
+    public ResponseEntity<Void> logout(String token) {
+        Optional<Session> session = sessionRepository.findByToken(token);
+        if(session.isEmpty())
+        {
+            throw  new InvalidUserSessionException("Invalid Session");
+        }
+        session.get().setSessionStatus(SessionStatus.ENDED);
+        sessionRepository.save(session.get());
+        return ResponseEntity.ok().build();
+    }
 }

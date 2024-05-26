@@ -29,4 +29,10 @@ public class AuthorizationController {
     {
         return authService.login(loginDTO);
     }
+
+    @GetMapping("/logout/{userId}")
+    public ResponseEntity<Void> logout(@PathVariable String userId,@RequestHeader("token") String token)
+    {
+        return authService.logout(token);
+    }
 }

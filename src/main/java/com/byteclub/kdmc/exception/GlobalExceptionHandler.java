@@ -17,20 +17,19 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(UserExistsInSystem.class)
-    public ResponseEntity<?> userExistsInSystem(UserExistsInSystem ex,WebRequest request)
-    {
+    public ResponseEntity<?> userExistsInSystem(UserExistsInSystem ex, WebRequest request) {
         ErrorDetails errorDetails = new ErrorDetails(HttpStatus.CONTINUE.value(), ex.getMessage(), request.getDescription(false));
         return new ResponseEntity<>(errorDetails, HttpStatus.CONFLICT);
     }
+
     @ExceptionHandler(InvalidCredentials.class)
-    public ResponseEntity<?> invalidCredentials(InvalidCredentials ex,WebRequest request)
-    {
+    public ResponseEntity<?> invalidCredentials(InvalidCredentials ex, WebRequest request) {
         ErrorDetails errorDetails = new ErrorDetails(HttpStatus.UNAUTHORIZED.value(), ex.getMessage(), request.getDescription(false));
         return new ResponseEntity<>(errorDetails, HttpStatus.UNAUTHORIZED);
     }
-    @ExceptionHandler(InvalidCredentials.class)
-    public ResponseEntity<?> invalidUserSession(InvalidUserSession ex,WebRequest request)
-    {
+
+    @ExceptionHandler(InvalidUserSessionException.class)
+    public ResponseEntity<?> invalidUserSession(InvalidUserSessionException ex, WebRequest request) {
         ErrorDetails errorDetails = new ErrorDetails(HttpStatus.NON_AUTHORITATIVE_INFORMATION.value(), ex.getMessage(), request.getDescription(false));
         return new ResponseEntity<>(errorDetails, HttpStatus.NON_AUTHORITATIVE_INFORMATION);
     }
