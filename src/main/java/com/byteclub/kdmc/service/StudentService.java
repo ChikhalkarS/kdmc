@@ -48,7 +48,7 @@ public class StudentService {
 
         }
 
-        Student student = studentRepository.save(mapStudentDtoToStudent(studentRequestDTO, false));
+        Student student = studentRepository.save(mapStudentDtoToStudent(studentRequestDTO));
         return mapStudentToResponse(student);
 
     }

@@ -12,6 +12,7 @@ public class Employee extends BaseModel{
     private String firstName;
     private String lastName;
     private String email;
+    private String password;
     private String phoneNumber;
     private String dateOfBirth;
     private String gender;
