@@ -44,7 +44,7 @@ public class StudentContoller {
 
     @PostMapping("/student")
     public ResponseEntity<StudentResponseDTO> saveStudent(@RequestBody StudentRequestDTO studentRequestDTO) {
-        log.info("Inside saveStudent");
+        log.info("Inside saveStudent: {}", studentRequestDTO.toString());
         StudentResponseDTO student = studentService.save(studentRequestDTO);
         return ResponseEntity.ok(student);
     }
@@ -52,6 +52,7 @@ public class StudentContoller {
     @GetMapping("/students")
     public ResponseEntity<List<StudentResponseDTO>> getAllStudents()
     {
+        log.info("Inside getAllStudents");
         return ResponseEntity.ok(studentService.findAllStudent());
     }
 }
