@@ -34,7 +34,7 @@ public class StudentMapper {
     }
 
 
-    public  StudentResponseDTO mapStudentToResponse(Student student) {
+    public static StudentResponseDTO mapStudentToResponse(Student student) {
         StudentResponseDTO studentResponseDTO = new StudentResponseDTO();
         studentResponseDTO.setEmail(student.getEmail());
         studentResponseDTO.setGender(student.getGender());
